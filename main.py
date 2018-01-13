@@ -21,13 +21,13 @@ def main():
 
     user = rehive.admin.user.get('{}@rehive.com'.format(username))
 
-    if not TX_STORE.get(username):
-        TX_STORE[username] = dict()
-
     if user.status_code == 404:
         user = rehive.admin.user.create(
             email='{}@rehive.com'.format(username)
         )
+
+    if not TX_STORE.get(username):
+        TX_STORE[username] = dict()
 
     if action == 'opened':
         tx = rehive.admin.transactions.create_credit(
