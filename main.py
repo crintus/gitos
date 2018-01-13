@@ -21,7 +21,8 @@ def main():
 
     data = request.get_json()
 
-    # import pdb; pdb.set_trace()
+    if not data.get('pull_request'):
+        return Response('Derp')
 
     pull_request = data.get('pull_request')
     pr_id = pull_request.get('id')
